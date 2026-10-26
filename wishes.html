@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Secret For You</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F4F7F5;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .page-fade-in {
+            animation: fadeIn ease 1.2s;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 min-h-screen py-12 px-4 sm:px-6 lg:px-8 page-fade-in flex flex-col justify-between">
+
+    <main class="max-w-2xl mx-auto w-full space-y-8">
+
+        <!-- HEADER PART III -->
+        <header class="text-center space-y-3 border-b border-gray-200 pb-8">
+            <span class="text-xs uppercase tracking-widest text-[#5C8374] font-semibold">Part III</span>
+            <h1 class="text-3xl sm:text-4xl font-serif text-[#2C3E35]">Wishes & A Special Secret</h1>
+            <p class="text-sm text-gray-500 italic">"Doa terbaik, dan sebuah rahasia yang sudah lama kusimpan..."</p>
+        </header>
+
+        <!-- UCAPAN & PESAN UTAMA -->
+        <section class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 space-y-6">
+            <div class="flex items-center gap-3 text-[#5C8374]">
+                <span class="text-2xl">✨</span>
+                <h2 class="text-2xl font-serif font-bold text-[#2C3E35]">Harapanku Untukmu</h2>
+            </div>
+
+            <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                Di ulang tahun kamu yang ke-21 ini, aku berdoa semoga kamu tumbuh jadi pribadi yang semakin dewasa, makin bijak, dan selalu berpikiran terbuka (<i>open-minded</i>). Semoga di usiamu yang baru ini, kamu selalu diberi kemudahan untuk menyerap banyak hal dan ilmu-ilmu baru yang bermanfaat, serta satu per satu impian yang selama ini kamu cita-citakan bisa terwujud dengan indah.
+            </p>
+
+            <div class="bg-[#F8FAFC] border-l-4 border-[#5C8374] p-4 rounded-r-xl space-y-2">
+                <p class="text-xs font-semibold uppercase tracking-wider text-[#5C8374]">Pesan Khusus Dari Aku:</p>
+                <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+                    Pesan aku buat kamu, tolong selalu jaga diri dan kesehatan kamu baik-baik ya, Sayang. Mumpung kita masih di usia seproduktif ini, yuk sama-sama makin rajin merawat diri. Dan yang paling utama, jangan sampai melupakan sholat yaa. Selalu ingat pengingat indah ini:
+                    <span class="block mt-2 font-serif italic font-medium text-[#2C3E35]">"Perbaikilah ibadahmu, maka Allah akan memperbaiki hidupmu."</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SISTEM HIDDEN MESSAGE BERLAPIS (PUZZLE / GATE) -->
+        <!-- ========================================== -->
+        
+        <!-- LAPISAN 1: PERTANYAAN KENANGAN -->
+        <section id="layer-1" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 space-y-4 transition-all duration-500">
+            <div class="flex items-center gap-2 text-[#5C8374]">
+                <span class="text-xl">🔒</span>
+                <h3 class="text-lg font-serif font-semibold text-[#2C3E35]">Lapisan 1: Pertanyaan Rahasia</h3>
+            </div>
+            <p class="text-xs text-gray-500">Sebelum membuka pesan tersembunyi, ingatkah kamu siapa nama panggilan lucu pertama kali kita saat awal <i>match</i> di aplikasi?</p>
+
+            <div class="space-y-3 pt-2">
+                <input type="text" id="answer-1" placeholder="Masukkan jawaban di sini (huruf kecil semua)..." 
+                    class="w-full bg-[#F9FAFB] border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:border-[#5C8374] text-gray-800 placeholder-gray-400">
+                <button onclick="checkLayer1()" 
+                    class="w-full bg-[#5C8374] hover:bg-[#4A6B5D] text-white font-medium py-2.5 rounded-xl transition duration-300 shadow-sm text-sm">
+                    Buka Lapisan 1 ➔
+                </button>
+                <p id="error-1" class="text-xs text-red-500 hidden font-medium">Hmm, sepertinya bukan itu jawabannya. Coba ingat-ingat lagi! 😊</p>
+            </div>
+        </section>
+
+        <!-- LAPISAN 2: TANGGAL / ANGKA SPESIAL (Hidden by default) -->
+        <section id="layer-2" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 space-y-4 hidden transition-all duration-500">
+            <div class="flex items-center gap-2 text-[#5C8374]">
+                <span class="text-xl">🔐</span>
+                <h3 class="text-lg font-serif font-semibold text-[#2C3E35]">Lapisan 2: Tanggal Bersejarah</h3>
+            </div>
+            <p class="text-xs text-gray-500">Hebat! Sekarang masukkan tanggal jadian kita format angka (Contoh: DDMMYY atau DDMMYYYY, misal: 251025)</p>
+
+            <div class="space-y-3 pt-2">
+                <input type="password" id="answer-2" placeholder="Masukkan kombinasi angka..." 
+                    class="w-full bg-[#F9FAFB] border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:border-[#5C8374] text-gray-800 placeholder-gray-400">
+                <button onclick="checkLayer2()" 
+                    class="w-full bg-[#5C8374] hover:bg-[#4A6B5D] text-white font-medium py-2.5 rounded-xl transition duration-300 shadow-sm text-sm">
+                    Buka Lapisan 2 ➔
+                </button>
+                <p id="error-2" class="text-xs text-red-500 hidden font-medium">Tanggalnya kurang tepat, sayang. Coba dicek lagi ya!</p>
+            </div>
+        </section>
+
+        <!-- LAPISAN 3: THE ULTIMATE PROPOSAL MESSAGE (Hidden by default) -->
+        <section id="layer-3" class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border-2 border-[#5C8374] space-y-6 hidden transition-all duration-700 page-fade-in">
+            <div class="text-center space-y-2 border-b border-gray-100 pb-4">
+                <span class="text-3xl">💍</span>
+                <h3 class="text-2xl font-serif font-bold text-[#2C3E35]">The Ultimate Hidden Message</h3>
+                <p class="text-xs text-[#5C8374] font-semibold tracking-wider uppercase">Pesan Paling Penting Dalam Hidupku</p>
+            </div>
+
+            <div class="space-y-4 text-gray-700 text-sm sm:text-base leading-relaxed">
+                <p>
+                    Kalau kamu berhasil membuka semua lapisan ini, berarti kamu tahu persis seberapa berartinya perjalanan kita dari hari pertama sampai detik ini.
+                </p>
+                <p>
+                    Menghabiskan hari-hari bersamamu membuatku menyadari satu hal yang pasti: aku tidak bisa membayangkan masa depanku diisi oleh orang lain selain kamu. Kamu adalah rumah, tempat pulang, dan ketenangan yang selama ini aku cari.
+                </p>
+                <p class="font-serif italic text-lg text-[#3A5348] text-center py-3 bg-[#F4F7F5] rounded-xl border border-gray-200">
+                    "Maukah kamu menua bersama, berjalan di sisa hidupku, dan menjadi istriku?"
+                </p>
+            </div>
+
+            <!-- TOMBOL PILIHAN MENIKAH -->
+            <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                <button onclick="sayYes()" class="flex-1 bg-[#5C8374] hover:bg-[#4A6B5D] text-white font-semibold py-3 rounded-xl shadow-md transition duration-300 text-center">
+                    I Said Yes! 🤍💍
+                </button>
+                <button id="btn-no" onmouseover="moveButton()" onclick="moveButton()" class="bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium py-3 px-6 rounded-xl transition duration-200 text-sm">
+                    Nanti dulu / Pikir-pikir 😉
+                </button>
+            </div>
+
+            <!-- Pesan Sukses Jika Klik Yes -->
+            <div id="success-proposal" class="hidden text-center p-4 bg-[#E8F0EC] text-[#3A5348] rounded-xl font-serif text-lg font-semibold space-y-2 page-fade-in">
+                <p>🎉 Yeayy! Aku adalah pria paling beruntung di dunia hari ini.</p>
+                <p class="text-xs font-sans text-gray-600 font-normal">Screenshot layar ini dan kirimkan ke WhatsApp aku sekarang juga, Sayang! ❤️</p>
+            </div>
+        </section>
+
+        <!-- NAVIGASI KEMBALI KE HALAMAN UTAMA -->
+        <div class="pt-6 text-center border-t border-gray-200">
+            <a href="index.html" class="inline-flex items-center gap-2 text-sm text-[#5C8374] hover:text-[#4A6B5D] font-medium transition-colors">
+                ← Kembali ke Halaman Utama
+            </a>
+        </div>
+
+    </main>
+
+    <script>
+        // Logika Lapisan 1
+        function checkLayer1() {
+            const val = document.getElementById('answer-1').value.toLowerCase().trim();
+            // Ganti kata 'buko pandan' dengan jawaban rahasia versi kamu
+            if(val === 'buko pandan' || val === 'bukopandan') {
+                document.getElementById('layer-1').classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    document.getElementById('layer-1').style.display = 'none';
+                    document.getElementById('layer-2').classList.remove('hidden');
+                }, 300);
+            } else {
+                document.getElementById('error-1').classList.remove('hidden');
+            }
+        }
+
+        // Logika Lapisan 2
+        function checkLayer2() {
+            const val = document.getElementById('answer-2').value.trim();
+            // Ganti angka di bawah dengan tanggal penting kalian (misal tanggal jadian)
+            const secretDate = '251025'; // Contoh, bisa kamu ubah sesuai tanggal aslimu
+            
+            if(val === secretDate || val === '25102025' || val.length >= 4) { // Diberi fleksibilitas dikit biar aman
+                document.getElementById('layer-2').classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    document.getElementById('layer-2').style.display = 'none';
+                    document.getElementById('layer-3').classList.remove('hidden');
+                }, 300);
+            } else {
+                document.getElementById('error-2').classList.remove('hidden');
+            }
+        }
+
+        // Tombol 'Nanti dulu' yang lari-lari gemas kalau dideketin (opsional biar interaktif)
+        function moveButton() {
+            const btn = document.getElementById('btn-no');
+            const randomX = Math.random() * 120 - 60;
+            const randomY = Math.random() * 60 - 30;
+            btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        // Kalau dia klik Yes!
+        function sayYes() {
+            document.getElementById('success-proposal').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
